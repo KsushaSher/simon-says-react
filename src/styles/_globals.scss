@@ -1,0 +1,53 @@
+@use './_variables.scss' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+
+  background-color: #cdcda0;
+}
+
+.button {
+  padding: 9px 20px;
+  border: 1.5px solid rgb(135 142 110);
+  border-radius: 7px;
+
+  font-size: 18px;
+  color: rgb(44 45 39);
+
+  background-color: rgb(233 240 211);
+
+  &:hover,
+  &:active {
+    border: 1.5px solid rgb(103 131 1);
+    color: rgb(81 95 12);
+    background-color: rgb(247 253 142);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    border: 1.5px solid rgb(157 160 147);
+    color: rgb(99 99 95);
+    background-color: rgb(194 200 176);
+  }
+
+  @media (width <= 767px) {
+    font-size: 16px;
+  }
+}
