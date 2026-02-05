@@ -8,6 +8,7 @@ export const selectGameStarted = createSelector(
   (data) => data.isGameStarted
 );
 export const selectRound = createSelector(selectGameData, (data) => data.round);
+export const selectLevel = createSelector(selectGameData, (data) => data.level);
 export const selectRetryAvailable = createSelector(
   selectGameData,
   (data) => data.retryAvailable
