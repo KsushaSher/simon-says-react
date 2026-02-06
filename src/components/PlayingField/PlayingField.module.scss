@@ -1,13 +1,10 @@
 .playing-field {
   display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
 
-  height: 40px;
   margin: 0 auto;
-  border: 2px solid #3a3c11;
-  border-radius: 7px;
-
-  background-color: #383a19;
-  box-shadow: 5px 5px 5px #7273624a;
 }
 
 .char {
@@ -41,6 +38,11 @@
   }
 }
 
+.active-char {
+  transform: scale(1.1);
+  background-color: rgb(227 175 241);
+}
+
 .numbers {
   display: flex;
   flex-wrap: wrap;
@@ -65,7 +67,7 @@
   align-items: center;
   justify-content: flex-start;
 
-  height: 30px;
+  height: 40px;
   padding: 5px 15px;
   border: 1.5px solid rgb(130 136 107);
   border-radius: 7px;
@@ -73,6 +75,10 @@
   font-size: 18px;
 
   outline: none;
+
+  @media (width <= 767px) {
+    font-size: 16px;
+  }
 
   @media (width <= 767px) {
     font-size: 16px;

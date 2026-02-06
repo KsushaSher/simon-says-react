@@ -1,15 +1,21 @@
 import type { JSX } from 'react';
+import clsx from 'clsx';
 import s from './PlayingField.module.scss';
 
 interface CharacterProps {
   char: string;
+  active: boolean;
   onClick: (char: string) => void;
 }
 
-const Character = ({ char, onClick }: CharacterProps): JSX.Element => {
+const Character = ({ char, active, onClick }: CharacterProps): JSX.Element => {
   return (
-    <div className={s.char} data-key={char} onClick={() => onClick(char)}>
+    <div
+      className={clsx(s.char, active && s['active-char'])}
+      onClick={() => onClick(char)}
+    >
       {char}
+      {active}
     </div>
   );
 };

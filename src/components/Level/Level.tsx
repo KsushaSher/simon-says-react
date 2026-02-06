@@ -2,6 +2,7 @@ import { LEVELS } from '../../shared/constants';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectLevel } from '../../store/selectors/gameData.selectors';
 import { setLevel, type LevelProp } from '../../store/slices/gameDataSlice';
+import s from './Level.module.scss';
 
 const Level = () => {
   const dispatch = useAppDispatch();
@@ -11,6 +12,7 @@ const Level = () => {
     <label>
       Level:{' '}
       <select
+        className={s.level}
         name="level"
         value={level}
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>

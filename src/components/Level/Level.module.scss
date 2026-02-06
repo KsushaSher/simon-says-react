@@ -1,17 +1,14 @@
-.app {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
+.level {
+  padding: 1px 7px;
+  border: 1.5px solid rgb(116 125 82);
+  border-radius: 5px;
 
-  width: 60vw;
-  height: 80vh;
-  margin: 0 auto;
-  padding: 30px;
-  border: 2px solid #a0a451;
-  border-radius: 7px;
+  font-size: 18px;
+  color: rgb(44 45 39);
 
-  background-color: #aaae5a;
-  box-shadow: 5px 5px 5px #7273624a;
+  background-color: #9b9e57;
+
+  @media (width <= 767px) {
+    font-size: 16px;
+  }
 }

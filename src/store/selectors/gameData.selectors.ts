@@ -13,9 +13,17 @@ export const selectRetryAvailable = createSelector(
   selectGameData,
   (data) => data.retryAvailable
 );
-export const selectSequenceСharacters = createSelector(
+export const selectSequenceCharacters = createSelector(
   selectGameData,
   (data) => data.sequenceСharacters
+);
+export const selectActiveСharacter = createSelector(
+  selectGameData,
+  (data) => data.activeСharacter
+);
+export const selectIsPlayingHighlight = createSelector(
+  selectGameData,
+  (data) => data.isPlayingHighlight
 );
 export const selectDisplaySymbols = createSelector(
   selectGameData,

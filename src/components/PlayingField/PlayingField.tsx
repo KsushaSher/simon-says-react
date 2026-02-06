@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import Keyboard from './Keyboard';
 import Input from './Input';
+import s from './PlayingField.module.scss';
 
 const PlayingField = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState<string>('');
 
   const addChar = (char: string) => {
     setInputValue((prev) => prev + char);
@@ -22,10 +23,10 @@ const PlayingField = () => {
   }, []);
 
   return (
-    <>
+    <div className={s['playing-field']}>
       <Input value={inputValue} />
       <Keyboard onInput={addChar} />
-    </>
+    </div>
   );
 };
 

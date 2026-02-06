@@ -1,6 +1,9 @@
 import { LETTERS, NUMBERS } from '../../shared/constants';
 import { useAppSelector } from '../../store/hooks';
-import { selectLevel } from '../../store/selectors/gameData.selectors';
+import {
+  selectActiveСharacter,
+  selectLevel,
+} from '../../store/selectors/gameData.selectors';
 import Character from './Character';
 import s from './PlayingField.module.scss';
 
@@ -10,13 +13,19 @@ interface KeyboardProps {
 
 const Keyboard = ({ onInput }: KeyboardProps) => {
   const level = useAppSelector(selectLevel);
+  const activeChar = useAppSelector(selectActiveСharacter);
 
   return (
     <>
       {level === 'easy' && (
         <div className={s['numbers']}>
           {NUMBERS.map((num) => (
-            <Character char={num} key={num} onClick={onInput} />
+            <Character
+              char={num}
+              key={num}
+              active={activeChar === num}
+              onClick={onInput}
+            />
           ))}
         </div>
       )}
@@ -24,7 +33,12 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
       {level === 'medium' && (
         <div className={s['letters']}>
           {LETTERS.map((char) => (
-            <Character char={char} key={char} onClick={onInput} />
+            <Character
+              char={char}
+              key={char}
+              active={activeChar === char}
+              onClick={onInput}
+            />
           ))}
         </div>
       )}
@@ -33,12 +47,22 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
         <>
           <div className={s['numbers']}>
             {NUMBERS.map((num) => (
-              <Character char={num} key={num} onClick={onInput} />
+              <Character
+                char={num}
+                key={num}
+                active={activeChar === num}
+                onClick={onInput}
+              />
             ))}
           </div>
           <div className={s['letters']}>
             {LETTERS.map((char) => (
-              <Character char={char} key={char} onClick={onInput} />
+              <Character
+                char={char}
+                key={char}
+                active={activeChar === char}
+                onClick={onInput}
+              />
             ))}
           </div>
         </>

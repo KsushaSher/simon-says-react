@@ -7,6 +7,8 @@ export interface GameDataState {
   level: LevelProp;
   retryAvailable: boolean;
   sequenceСharacters: string[] | [];
+  activeСharacter: string | null;
+  isPlayingHighlight: boolean;
   displaySymbols: boolean;
 }
 
@@ -16,6 +18,8 @@ const initialState: GameDataState = {
   level: 'easy',
   retryAvailable: true,
   sequenceСharacters: [],
+  activeСharacter: null,
+  isPlayingHighlight: false,
   displaySymbols: false,
 };
 
@@ -35,8 +39,14 @@ const gameDataSlice = createSlice({
     setRetryAvailable(state, action: PayloadAction<boolean>) {
       state.isGameStarted = action.payload;
     },
-    setSequenceСharacters(state, action: PayloadAction<string[]>) {
+    setSequenceCharacters(state, action: PayloadAction<string[]>) {
       state.sequenceСharacters = action.payload;
+    },
+    setActiveCharacter(state, action: PayloadAction<string | null>) {
+      state.activeСharacter = action.payload;
+    },
+    setIsPlayingHighlight(state, action: PayloadAction<boolean>) {
+      state.isPlayingHighlight = action.payload;
     },
     setDisplaySymbols(state, action: PayloadAction<boolean>) {
       state.displaySymbols = action.payload;
@@ -49,7 +59,9 @@ export const {
   setRound,
   setLevel,
   setRetryAvailable,
-  setSequenceСharacters,
+  setSequenceCharacters,
+  setActiveCharacter,
+  setIsPlayingHighlight,
   setDisplaySymbols,
 } = gameDataSlice.actions;
 

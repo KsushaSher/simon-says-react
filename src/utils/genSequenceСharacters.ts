@@ -6,7 +6,6 @@ export const genSequenceСharacters = (
   round: number
 ): string[] => {
   const sourceArray = keyboardByLevel[level];
-
   const randomCharArray = sourceArray.slice().sort(() => Math.random() - 0.5);
   const randomCharArrayByRound = randomCharArray.slice(0, round * 2);
 
