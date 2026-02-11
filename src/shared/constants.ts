@@ -34,12 +34,13 @@ export const LETTERS = [
   'M',
 ];
 
-export const keyboardByLevel = {
+export const KEYBOARD = {
   [LEVELS.easy]: NUMBERS,
   [LEVELS.medium]: LETTERS,
   [LEVELS.hard]: NUMBERS.concat(LETTERS),
 };
 export const MESSAGE = {
   victory: 'You passed the round!',
+  completedGame: 'Congratulations! You won.',
   error: 'Error!',
 };

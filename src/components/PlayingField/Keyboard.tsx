@@ -2,6 +2,7 @@ import { LETTERS, NUMBERS } from '../../shared/constants';
 import { useAppSelector } from '../../store/hooks';
 import {
   selectActiveСharacter,
+  selectGameStarted,
   selectLevel,
 } from '../../store/selectors/gameData.selectors';
 import Character from './Character';
@@ -14,6 +15,9 @@ interface KeyboardProps {
 const Keyboard = ({ onInput }: KeyboardProps) => {
   const level = useAppSelector(selectLevel);
   const activeChar = useAppSelector(selectActiveСharacter);
+  const gameStarted = useAppSelector(selectGameStarted);
+
+  console.log('gameStarted----', gameStarted);
 
   return (
     <>
@@ -25,6 +29,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
               key={num}
               active={activeChar === num}
               onClick={onInput}
+              gameStarted={!gameStarted}
             />
           ))}
         </div>
@@ -38,6 +43,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
               key={char}
               active={activeChar === char}
               onClick={onInput}
+              gameStarted={!gameStarted}
             />
           ))}
         </div>
@@ -52,6 +58,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
                 key={num}
                 active={activeChar === num}
                 onClick={onInput}
+                gameStarted={!gameStarted}
               />
             ))}
           </div>
@@ -62,6 +69,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
                 key={char}
                 active={activeChar === char}
                 onClick={onInput}
+                gameStarted={!gameStarted}
               />
             ))}
           </div>

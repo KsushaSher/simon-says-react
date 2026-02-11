@@ -1,33 +1,35 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import Keyboard from './Keyboard';
 import Input from './Input';
 import s from './PlayingField.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { checkValue } from '../../store/slices/gameDataSlice';
+import { checkValue, setInputValue } from '../../store/slices/gameDataSlice';
 import {
+  selectCompletedGameStatus,
   selectErrorStatus,
-  selectPendingStatus,
+  selectGameStarted,
+  selectInputValue,
   selectWinStatus,
 } from '../../store/selectors/gameData.selectors';
+import { MESSAGE } from '../../shared/constants';
 
 const PlayingField = () => {
-  const [inputValue, setInputValue] = useState<string>('');
   const dispatch = useAppDispatch();
-  const addChar = useCallback(
-    (char: string) => {
-      setInputValue((prev) => {
-        const newValue = prev + char;
-
-        dispatch(checkValue(newValue));
-
-        return newValue;
-      });
-    },
-    [dispatch]
-  );
-  const pending = useAppSelector(selectPendingStatus);
+  const inputValue = useAppSelector(selectInputValue);
+  const gameStarted = useAppSelector(selectGameStarted);
   const vin = useAppSelector(selectWinStatus);
   const error = useAppSelector(selectErrorStatus);
+  const completedGame = useAppSelector(selectCompletedGameStatus);
+
+  const addChar = useCallback(
+    (char: string) => {
+      const newValue = inputValue + char;
+
+      dispatch(setInputValue(newValue));
+      dispatch(checkValue());
+    },
+    [dispatch, inputValue]
+  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -36,17 +38,21 @@ const PlayingField = () => {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    if (gameStarted) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [addChar]);
+  }, [addChar, gameStarted]);
 
   return (
     <div className={s['playing-field']}>
-      {error && 'error'}
-      {vin && 'vin'}
-      {pending && 'pending'}
-      <Input value={inputValue} />
+      {error && <div className={s['error-message']}>{MESSAGE.error}</div>}
+      {vin && <div className={s['victory-message']}>{MESSAGE.victory}</div>}
+      {completedGame && (
+        <div className={s['victory-message']}>{MESSAGE.completedGame}</div>
+      )}
+      {gameStarted && <Input />}
       <Keyboard onInput={addChar} />
     </div>
   );

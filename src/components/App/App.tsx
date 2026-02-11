@@ -7,6 +7,7 @@ import {
 } from '../../store/selectors/gameData.selectors';
 import Level from '../Level';
 import NewGame from '../NewGame';
+import NextRound from '../NextRound';
 import PlayingField from '../PlayingField';
 import RepeatSequence from '../RepeatSequence';
 import Round from '../Round';
@@ -29,10 +30,10 @@ const App = () => {
         </div>
       </div>
       <PlayingField />
-      {isGameStarted ? <RepeatSequence /> : <StartGame />}
-      <>
-        {pending} {vin} {error}
-      </>
+      {isGameStarted && pending && <RepeatSequence />}
+      {!isGameStarted && pending && <StartGame />}
+      {vin && <NextRound />}
+      {error && <div />}
     </div>
   );
 };

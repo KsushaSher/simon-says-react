@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectSequenceCharacters } from '../../store/selectors';
 import {
   selectIsPlayingHighlight,
   selectRepeatAgain,
@@ -14,11 +13,10 @@ const RepeatSequence = () => {
   const dispatch = useAppDispatch();
   const repeatAgain = useAppSelector(selectRepeatAgain);
   const isPlayingHighlight = useAppSelector(selectIsPlayingHighlight);
-  const sequence = useAppSelector(selectSequenceCharacters);
 
   const repeatSequence = () => {
     dispatch(setRepeatAgain(false));
-    dispatch(playSequenceHighlight(sequence));
+    dispatch(playSequenceHighlight());
     dispatch(setGameStarted(true));
   };
 

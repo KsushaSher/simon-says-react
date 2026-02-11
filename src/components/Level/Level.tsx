@@ -13,7 +13,7 @@ const Level = () => {
   const isGameStarted = useAppSelector(selectGameStarted);
 
   return (
-    <label>
+    <label className={s.label}>
       Level:{' '}
       <select
         className={s.level}

@@ -1,19 +1,18 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { generateSequence } from '../../utils/generateSequence';
 
 export type LevelProp = 'easy' | 'medium' | 'hard';
-export type StatusProp = 'pending' | 'win' | 'error';
+export type StatusProp = 'pending' | 'win' | 'error' | 'completed game';
 export interface GameDataState {
   isGameStarted: boolean;
   round: number;
   level: LevelProp;
   repeatAgain: boolean;
-  sequenceСharacters: string[];
-  activeСharacter: string | null;
+  sequenceCharacters: string[];
+  activeCharacter: string | null;
   isPlayingHighlight: boolean;
-  displaySymbols: boolean;
-  isVictoryMessage: string;
-  isErrorMessage: string;
   status: StatusProp;
+  inputValue: string;
 }
 
 const initialState: GameDataState = {
@@ -21,13 +20,11 @@ const initialState: GameDataState = {
   round: 1,
   level: 'easy',
   repeatAgain: true,
-  sequenceСharacters: [],
-  activeСharacter: null,
+  sequenceCharacters: [],
+  activeCharacter: null,
   isPlayingHighlight: false,
-  displaySymbols: false,
-  isVictoryMessage: '',
-  isErrorMessage: '',
   status: 'pending',
+  inputValue: '',
 };
 
 const gameDataSlice = createSlice({
@@ -47,27 +44,18 @@ const gameDataSlice = createSlice({
       state.isGameStarted = action.payload;
     },
     setSequenceCharacters(state, action: PayloadAction<string[]>) {
-      state.sequenceСharacters = action.payload;
+      state.sequenceCharacters = action.payload;
     },
     setActiveCharacter(state, action: PayloadAction<string | null>) {
-      state.activeСharacter = action.payload;
+      state.activeCharacter = action.payload;
     },
     setIsPlayingHighlight(state, action: PayloadAction<boolean>) {
       state.isPlayingHighlight = action.payload;
     },
-    setDisplaySymbols(state, action: PayloadAction<boolean>) {
-      state.displaySymbols = action.payload;
-    },
-    setIsVictoryMessage(state, action: PayloadAction<string>) {
-      state.isVictoryMessage = action.payload;
-    },
-    setIsErrorMessage(state, action: PayloadAction<string>) {
-      state.isErrorMessage = action.payload;
-    },
-    checkValue(state, action: PayloadAction<string>) {
-      const sequence = state.sequenceСharacters.join('');
-      const contains = sequence.startsWith(action.payload);
-      const fullMatch = sequence === action.payload;
+    checkValue(state) {
+      const sequence = state.sequenceCharacters.join('');
+      const contains = sequence.startsWith(state.inputValue);
+      const fullMatch = sequence === state.inputValue;
 
       if (!contains) {
         state.status = 'error';
@@ -76,6 +64,31 @@ const gameDataSlice = createSlice({
       } else {
         state.status = 'pending';
       }
+    },
+    genSequenceСharacters(state) {
+      state.sequenceCharacters = generateSequence(state.level, state.round);
+    },
+    setInputValue(state, action: PayloadAction<string>) {
+      state.inputValue = action.payload;
+    },
+    switchNextLevel(state) {
+      state.inputValue = '';
+      state.status = 'pending';
+
+      if (state.round < 5) {
+        state.round += 1;
+      } else if (state.round === 4) {
+        state.status = 'completed game';
+      }
+
+      state.sequenceCharacters = generateSequence(state.level, state.round);
+      state.repeatAgain = true;
+    },
+    startNewGame(state) {
+      state.inputValue = '';
+      state.status = 'pending';
+      state.round = 1;
+      state.repeatAgain = true;
     },
   },
 });
@@ -88,10 +101,11 @@ export const {
   setSequenceCharacters,
   setActiveCharacter,
   setIsPlayingHighlight,
-  setDisplaySymbols,
-  setIsVictoryMessage,
-  setIsErrorMessage,
   checkValue,
+  genSequenceСharacters,
+  setInputValue,
+  switchNextLevel,
+  startNewGame,
 } = gameDataSlice.actions;
 
 export default gameDataSlice.reducer;

@@ -3,14 +3,18 @@ import {
   setActiveCharacter,
   setIsPlayingHighlight,
 } from '../slices/gameDataSlice';
+import type { RootState } from '../store';
 
 let isCancelled = false;
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const playSequenceHighlight = createAsyncThunk<unknown, string[]>(
+export const playSequenceHighlight = createAsyncThunk(
   'game/playSequenceHighlight',
-  async (sequence, { dispatch }) => {
+  async (_, { dispatch, getState }) => {
+    const state = getState() as RootState;
+    const sequence = state.gameData.sequenceCharacters;
+
     if (!sequence.length) return;
 
     isCancelled = false;

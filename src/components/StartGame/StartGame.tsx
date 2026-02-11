@@ -1,26 +1,19 @@
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {
-  setGameStarted,
-  setSequenceCharacters,
-} from '../../store/slices/gameDataSlice';
-import {
-  selectLevel,
-  selectRound,
-} from '../../store/selectors/gameData.selectors';
-import { genSequenceСharacters } from '../../utils/genSequenceСharacters';
+import { useAppDispatch } from '../../store/hooks';
+import { setGameStarted } from '../../store/slices/gameDataSlice';
 import { playSequenceHighlight } from '../../store/thunks/gameData.thunks';
+import { useEffect } from 'react';
+import { genSequenceСharacters } from '../../store/slices/gameDataSlice';
 
 const StartGame = () => {
   const dispatch = useAppDispatch();
-  const level = useAppSelector(selectLevel);
-  const round = useAppSelector(selectRound);
+
+  useEffect(() => {
+    dispatch(genSequenceСharacters());
+  }, [dispatch]);
 
   const startGame = () => {
     dispatch(setGameStarted(true));
-    const sequenceСharacters = genSequenceСharacters(level, round);
-
-    dispatch(setSequenceCharacters(sequenceСharacters));
-    dispatch(playSequenceHighlight(sequenceСharacters));
+    dispatch(playSequenceHighlight());
   };
 
   return (

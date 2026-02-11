@@ -3,5 +3,4 @@ export {
   selectRound,
   selectRepeatAgain,
   selectSequenceCharacters,
-  selectDisplaySymbols,
 } from './gameData.selectors';

@@ -6,17 +6,23 @@ interface CharacterProps {
   char: string;
   active: boolean;
   onClick: (char: string) => void;
+  gameStarted: boolean;
 }
 
-const Character = ({ char, active, onClick }: CharacterProps): JSX.Element => {
+const Character = ({
+  char,
+  active,
+  onClick,
+  gameStarted,
+}: CharacterProps): JSX.Element => {
   return (
-    <div
+    <button
       className={clsx(s.char, active && s['active-char'])}
       onClick={() => onClick(char)}
+      disabled={gameStarted}
     >
       {char}
-      {active}
-    </div>
+    </button>
   );
 };
 

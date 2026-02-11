@@ -1,10 +1,13 @@
 .playing-field {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 14px;
   align-items: center;
 
   margin: 0 auto;
+  padding-top: 30px;
 }
 
 .char {
@@ -26,6 +29,11 @@
   &:hover {
     cursor: pointer;
     background-color: rgb(206 236 115);
+  }
+
+  &:disabled {
+    cursor: auto;
+    background-color: #979b4f;
   }
 
   @media (width <= 767px) {
@@ -87,4 +95,18 @@
 
 .input-blur {
   outline: none;
+}
+
+.victory-message {
+  position: absolute;
+  top: 0;
+  font-weight: 600;
+  color: rgb(53 99 0);
+}
+
+.error-message {
+  position: absolute;
+  top: 0;
+  font-weight: 600;
+  color: rgb(216 0 0);
 }
