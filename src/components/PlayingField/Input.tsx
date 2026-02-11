@@ -1,3 +1,9 @@
+import { useAppSelector } from '../../store/hooks';
+import {
+  selectGameStarted,
+  selectIsPlayingHighlight,
+  selectPendingStatus,
+} from '../../store/selectors/gameData.selectors';
 import s from './PlayingField.module.scss';
 
 interface InputProps {
@@ -5,6 +11,10 @@ interface InputProps {
 }
 
 const Input = ({ value }: InputProps) => {
+  const isPlayingHighlight = useAppSelector(selectIsPlayingHighlight);
+  const pending = useAppSelector(selectPendingStatus);
+  const gameStarted = useAppSelector(selectGameStarted);
+
   return (
     <>
       <input
@@ -13,6 +23,7 @@ const Input = ({ value }: InputProps) => {
         readOnly
         className={s['input']}
         value={value}
+        disabled={!pending || isPlayingHighlight || !gameStarted}
       />
     </>
   );

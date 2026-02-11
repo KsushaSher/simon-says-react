@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   setGameStarted,
-  setRetryAvailable,
   setSequenceCharacters,
 } from '../../store/slices/gameDataSlice';
 import {
@@ -17,7 +16,6 @@ const StartGame = () => {
   const round = useAppSelector(selectRound);
 
   const startGame = () => {
-    dispatch(setRetryAvailable(true));
     dispatch(setGameStarted(true));
     const sequenceСharacters = genSequenceСharacters(level, round);
 

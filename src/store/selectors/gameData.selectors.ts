@@ -9,9 +9,9 @@ export const selectGameStarted = createSelector(
 );
 export const selectRound = createSelector(selectGameData, (data) => data.round);
 export const selectLevel = createSelector(selectGameData, (data) => data.level);
-export const selectRetryAvailable = createSelector(
+export const selectRepeatAgain = createSelector(
   selectGameData,
-  (data) => data.retryAvailable
+  (data) => data.repeatAgain
 );
 export const selectSequenceCharacters = createSelector(
   selectGameData,
@@ -28,4 +28,24 @@ export const selectIsPlayingHighlight = createSelector(
 export const selectDisplaySymbols = createSelector(
   selectGameData,
   (data) => data.displaySymbols
+);
+export const selectIsVictoryMessage = createSelector(
+  selectGameData,
+  (data) => data.isVictoryMessage
+);
+export const selectIsErrorMessage = createSelector(
+  selectGameData,
+  (data) => data.isErrorMessage
+);
+export const selectPendingStatus = createSelector(
+  selectGameData,
+  (data) => data.status === 'pending'
+);
+export const selectWinStatus = createSelector(
+  selectGameData,
+  (data) => data.status === 'win'
+);
+export const selectErrorStatus = createSelector(
+  selectGameData,
+  (data) => data.status === 'error'
 );

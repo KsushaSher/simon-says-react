@@ -2,17 +2,16 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store/hooks';
 import {
   setGameStarted,
-  setRetryAvailable,
+  setRepeatAgain,
 } from '../../store/slices/gameDataSlice';
 import { selectIsPlayingHighlight } from '../../store/selectors/gameData.selectors';
 
 const NewGame = () => {
   const dispatch = useAppDispatch();
-
   const isPlayingHighlight = useSelector(selectIsPlayingHighlight);
 
   const startNewGame = () => {
-    dispatch(setRetryAvailable(true));
+    dispatch(setRepeatAgain(true));
     dispatch(setGameStarted(false));
   };
 

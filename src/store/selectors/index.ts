@@ -1,7 +1,7 @@
 export {
   selectGameStarted,
   selectRound,
-  selectRetryAvailable,
+  selectRepeatAgain,
   selectSequenceCharacters,
   selectDisplaySymbols,
 } from './gameData.selectors';

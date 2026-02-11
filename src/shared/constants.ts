@@ -39,3 +39,7 @@ export const keyboardByLevel = {
   [LEVELS.medium]: LETTERS,
   [LEVELS.hard]: NUMBERS.concat(LETTERS),
 };
+export const MESSAGE = {
+  victory: 'You passed the round!',
+  error: 'Error!',
+};
