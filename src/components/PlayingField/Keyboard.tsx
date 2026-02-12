@@ -4,6 +4,7 @@ import {
   selectActiveСharacter,
   selectGameStarted,
   selectLevel,
+  selectPendingStatus,
 } from '../../store/selectors/gameData.selectors';
 import Character from './Character';
 import s from './PlayingField.module.scss';
@@ -16,8 +17,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
   const level = useAppSelector(selectLevel);
   const activeChar = useAppSelector(selectActiveСharacter);
   const gameStarted = useAppSelector(selectGameStarted);
-
-  console.log('gameStarted----', gameStarted);
+  const pendingStatus = useAppSelector(selectPendingStatus);
 
   return (
     <>
@@ -29,7 +29,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
               key={num}
               active={activeChar === num}
               onClick={onInput}
-              gameStarted={!gameStarted}
+              gameStarted={!gameStarted || !pendingStatus}
             />
           ))}
         </div>
@@ -43,7 +43,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
               key={char}
               active={activeChar === char}
               onClick={onInput}
-              gameStarted={!gameStarted}
+              gameStarted={!gameStarted || !pendingStatus}
             />
           ))}
         </div>
@@ -58,7 +58,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
                 key={num}
                 active={activeChar === num}
                 onClick={onInput}
-                gameStarted={!gameStarted}
+                gameStarted={!gameStarted || !pendingStatus}
               />
             ))}
           </div>
@@ -69,7 +69,7 @@ const Keyboard = ({ onInput }: KeyboardProps) => {
                 key={char}
                 active={activeChar === char}
                 onClick={onInput}
-                gameStarted={!gameStarted}
+                gameStarted={!gameStarted || !pendingStatus}
               />
             ))}
           </div>

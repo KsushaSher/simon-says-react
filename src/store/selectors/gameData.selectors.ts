@@ -31,15 +31,15 @@ export const selectPendingStatus = createSelector(
 );
 export const selectWinStatus = createSelector(
   selectGameData,
-  (data) => data.status === 'win'
+  (data) => data.round < 5 && data.status === 'win'
+);
+export const selectCompletedGame = createSelector(
+  selectGameData,
+  (data) => data.round === 5 && data.status === 'win'
 );
 export const selectErrorStatus = createSelector(
   selectGameData,
   (data) => data.status === 'error'
-);
-export const selectCompletedGameStatus = createSelector(
-  selectGameData,
-  (data) => data.status === 'completed game'
 );
 export const selectInputValue = createSelector(
   selectGameData,

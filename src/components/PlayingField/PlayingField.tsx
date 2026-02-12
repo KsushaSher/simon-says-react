@@ -5,10 +5,11 @@ import s from './PlayingField.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { checkValue, setInputValue } from '../../store/slices/gameDataSlice';
 import {
-  selectCompletedGameStatus,
+  selectCompletedGame,
   selectErrorStatus,
   selectGameStarted,
   selectInputValue,
+  selectPendingStatus,
   selectWinStatus,
 } from '../../store/selectors/gameData.selectors';
 import { MESSAGE } from '../../shared/constants';
@@ -19,7 +20,8 @@ const PlayingField = () => {
   const gameStarted = useAppSelector(selectGameStarted);
   const vin = useAppSelector(selectWinStatus);
   const error = useAppSelector(selectErrorStatus);
-  const completedGame = useAppSelector(selectCompletedGameStatus);
+  const completedGame = useAppSelector(selectCompletedGame);
+  const pendingStatus = useAppSelector(selectPendingStatus);
 
   const addChar = useCallback(
     (char: string) => {
@@ -33,17 +35,21 @@ const PlayingField = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.length !== 1) {
+        return;
+      }
+
       if (e.key.length === 1) {
         addChar(e.key);
       }
     };
 
-    if (gameStarted) {
+    if (gameStarted && pendingStatus) {
       window.addEventListener('keydown', handleKeyDown);
     }
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [addChar, gameStarted]);
+  }, [addChar, gameStarted, pendingStatus]);
 
   return (
     <div className={s['playing-field']}>
@@ -53,6 +59,7 @@ const PlayingField = () => {
         <div className={s['victory-message']}>{MESSAGE.completedGame}</div>
       )}
       {gameStarted && <Input />}
+
       <Keyboard onInput={addChar} />
     </div>
   );

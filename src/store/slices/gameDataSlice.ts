@@ -87,6 +87,7 @@ const gameDataSlice = createSlice({
     startNewGame(state) {
       state.inputValue = '';
       state.status = 'pending';
+      state.isGameStarted = false;
       state.round = 1;
       state.repeatAgain = true;
     },

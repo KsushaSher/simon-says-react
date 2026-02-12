@@ -44,3 +44,5 @@ export const MESSAGE = {
   completedGame: 'Congratulations! You won.',
   error: 'Error!',
 };
+
+export const STORAGE_KEY = 'simon-says-state';
