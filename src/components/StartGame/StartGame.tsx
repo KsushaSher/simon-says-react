@@ -17,8 +17,8 @@ const StartGame = () => {
   };
 
   return (
-    <button className="button" onClick={startGame}>
-      Start
+    <button className="game-button green-btn" onClick={startGame}>
+      PLAY
     </button>
   );
 };

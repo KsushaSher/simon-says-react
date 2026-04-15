@@ -13,7 +13,7 @@ const NewGame = () => {
 
   return (
     <button
-      className="button"
+      className="game-button"
       onClick={handleStartNewGame}
       disabled={isPlayingHighlight}
     >

@@ -1,7 +1,6 @@
 import { useAppSelector } from '../../store/hooks';
 import { selectGameStarted } from '../../store/selectors';
 import {
-  selectErrorStatus,
   selectPendingStatus,
   selectWinStatus,
 } from '../../store/selectors/gameData.selectors';
@@ -17,11 +16,11 @@ import s from './App.module.scss';
 const App = () => {
   const isGameStarted = useAppSelector(selectGameStarted);
   const pending = useAppSelector(selectPendingStatus);
-  const vin = useAppSelector(selectWinStatus);
-  const error = useAppSelector(selectErrorStatus);
+  const win = useAppSelector(selectWinStatus);
 
   return (
     <div className={s.app}>
+      <h1 className={s.title}>Simon Says</h1>
       <div className={s.options}>
         <div className={s['right-options']}>{isGameStarted && <NewGame />}</div>
         <div>
@@ -30,10 +29,11 @@ const App = () => {
         </div>
       </div>
       <PlayingField />
-      {isGameStarted && pending && <RepeatSequence />}
-      {!isGameStarted && pending && <StartGame />}
-      {vin && <NextRound />}
-      {error && <div />}
+      <div className={s['button-wrapper']}>
+        {isGameStarted && pending && <RepeatSequence />}
+        {!isGameStarted && pending && <StartGame />}
+        {win && <NextRound />}
+      </div>
     </div>
   );
 };

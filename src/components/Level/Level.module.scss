@@ -1,15 +1,28 @@
 .level {
-  padding: 1px 7px;
-  border: 1.5px solid rgb(116 125 82);
-  border-radius: 5px;
+  padding: 6px;
+  border: none;
+  border-radius: 20px;
 
-  font-size: 18px;
-  color: rgb(52 59 25);
+  font-size: 20px;
+  color: rgb(61 15 100);
+  text-align: center;
+  text-shadow: 1px 1px 2px #8038a7;
 
-  background-color: rgb(203 223 138);
+  background: linear-gradient(145deg, #a46ac6, #8c58b9);
+  outline: none;
+  box-shadow:
+    inset 0 10px 18px rgb(77 30 111 / 45%),
+    inset 0 -4px 10px rgb(79 30 134 / 25%),
+    0 0 1em #af85d6;
 
   &:disabled {
-    background-color: rgb(166 177 131);
+    color: rgb(44 40 47);
+    text-shadow: none;
+    background: linear-gradient(145deg, #9882a5, #89719e);
+    box-shadow:
+      inset 0 10px 18px rgb(46 40 49 / 30%),
+      inset 0 -4px 10px rgb(52 42 63 / 30%),
+      0 0 1em #af85d6;
   }
 
   @media (width <= 767px) {
@@ -18,5 +31,7 @@
 }
 
 .label {
-  color: rgb(52 59 25);
+  font-size: 20px;
+  color: rgb(61 15 100);
+  text-shadow: 1px 1px 2px #8038a7;
 }

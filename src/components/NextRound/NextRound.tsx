@@ -11,7 +11,7 @@ const NextRound = () => {
   };
 
   return (
-    <button className="button" onClick={startNextRound}>
+    <button className="game-button green-btn" onClick={startNextRound}>
       Next
     </button>
   );

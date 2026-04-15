@@ -40,11 +40,8 @@ const gameDataSlice = createSlice({
     setLevel(state, action: PayloadAction<LevelProp>) {
       state.level = action.payload;
     },
-    setRepeatAgain(state, action: PayloadAction<boolean>) {
-      state.isGameStarted = action.payload;
-    },
-    setSequenceCharacters(state, action: PayloadAction<string[]>) {
-      state.sequenceCharacters = action.payload;
+    turnOffRepeat(state) {
+      state.repeatAgain = false;
     },
     setActiveCharacter(state, action: PayloadAction<string | null>) {
       state.activeCharacter = action.payload;
@@ -54,8 +51,8 @@ const gameDataSlice = createSlice({
     },
     checkValue(state) {
       const sequence = state.sequenceCharacters.join('');
-      const contains = sequence.startsWith(state.inputValue);
-      const fullMatch = sequence === state.inputValue;
+      const contains = sequence.startsWith(state.inputValue.toUpperCase());
+      const fullMatch = sequence === state.inputValue.toUpperCase();
 
       if (!contains) {
         state.status = 'error';
@@ -98,8 +95,7 @@ export const {
   setGameStarted,
   setRound,
   setLevel,
-  setRepeatAgain,
-  setSequenceCharacters,
+  turnOffRepeat,
   setActiveCharacter,
   setIsPlayingHighlight,
   checkValue,

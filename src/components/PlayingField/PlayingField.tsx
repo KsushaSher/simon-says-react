@@ -18,7 +18,7 @@ const PlayingField = () => {
   const dispatch = useAppDispatch();
   const inputValue = useAppSelector(selectInputValue);
   const gameStarted = useAppSelector(selectGameStarted);
-  const vin = useAppSelector(selectWinStatus);
+  const win = useAppSelector(selectWinStatus);
   const error = useAppSelector(selectErrorStatus);
   const completedGame = useAppSelector(selectCompletedGame);
   const pendingStatus = useAppSelector(selectPendingStatus);
@@ -39,7 +39,7 @@ const PlayingField = () => {
         return;
       }
 
-      if (e.key.length === 1) {
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
         addChar(e.key);
       }
     };
@@ -54,7 +54,7 @@ const PlayingField = () => {
   return (
     <div className={s['playing-field']}>
       {error && <div className={s['error-message']}>{MESSAGE.error}</div>}
-      {vin && <div className={s['victory-message']}>{MESSAGE.victory}</div>}
+      {win && <div className={s['victory-message']}>{MESSAGE.victory}</div>}
       {completedGame && (
         <div className={s['victory-message']}>{MESSAGE.completedGame}</div>
       )}

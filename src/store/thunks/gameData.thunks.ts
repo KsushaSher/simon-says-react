@@ -33,12 +33,3 @@ export const playSequenceHighlight = createAsyncThunk(
     dispatch(setIsPlayingHighlight(false));
   }
 );
-
-// export const stopSequenceHighlight = createAsyncThunk(
-//   'game/stopSequenceHighlight',
-//   async (_, { dispatch }) => {
-//     isCancelled = true;
-//     dispatch(setActiveCharacter(null));
-//     dispatch(setIsPlayingHighlight(false));
-//   }
-// );

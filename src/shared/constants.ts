@@ -40,7 +40,7 @@ export const KEYBOARD = {
   [LEVELS.hard]: NUMBERS.concat(LETTERS),
 };
 export const MESSAGE = {
-  victory: 'You passed the round!',
+  victory: 'Round is completed!',
   completedGame: 'Congratulations! You won.',
   error: 'Error!',
 };

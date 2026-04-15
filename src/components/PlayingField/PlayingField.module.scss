@@ -11,6 +11,8 @@
 }
 
 .char {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,22 +20,84 @@
   width: 50px;
   height: 50px;
   border: 1px solid rgb(61 78 0);
-  border-radius: 5px;
+  border: none;
+  border-radius: 999px;
 
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 600;
-  color: #6d0198;
+  color: rgb(255 255 255);
+  text-shadow:
+    1px 1px 2px #363636,
+    0 0 5px rgb(255 255 255),
+    0 0 1px rgb(255 255 255);
+  letter-spacing: 1px;
 
-  background-color: rgb(203 223 138);
+  background: radial-gradient(circle at 30% 30%, #f2b830, #fab412 60%, #bc8400);
+  box-shadow:
+    inset 0 4px 8px rgb(255 255 255 / 40%),
+    inset 0 -6px 12px rgb(0 0 0 / 35%),
+    0 4px 0 #795400,
+    0 8px 10px rgb(0 0 0 / 40%);
+
+  transition: all 0.12s ease;
+
+  &::before {
+    pointer-events: none;
+    content: '';
+
+    position: absolute;
+    top: 10%;
+    left: 10%;
+
+    width: 70%;
+    height: 70%;
+    border-radius: 999px;
+
+    background: linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 30%),
+      rgb(255 255 255 / 8%),
+      transparent
+    );
+  }
 
   &:hover {
     cursor: pointer;
-    background-color: rgb(206 236 115);
+    background: radial-gradient(
+      circle at 30% 30%,
+      #f9c957,
+      #ffc232 60%,
+      #bc8400
+    );
+    box-shadow:
+      inset 0 4px 8px rgb(255 255 255 / 60%),
+      inset 0 -4px 12px rgb(0 0 0 / 50%),
+      0 6px 0 #5f4303,
+      0 16px 25px rgb(0 0 0 / 50%);
   }
 
   &:disabled {
     cursor: auto;
-    background-color: #979b4f;
+    background: radial-gradient(
+      circle at 30% 30%,
+      #bdb49f,
+      #aea285 60%,
+      #5e543e
+    );
+    box-shadow:
+      inset 0 4px 8px rgb(255 255 255 / 60%),
+      inset 0 -4px 12px rgb(0 0 0 / 50%),
+      0 5px 0 #665d49,
+      0 16px 25px rgb(0 0 0 / 50%);
+  }
+
+  &:active {
+    transform: translateY(8px);
+    box-shadow:
+      inset 0 6px 12px rgb(0 0 0 / 45%),
+      inset 0 -2px 4px rgb(255 255 255 / 30%),
+      0 2px 0 #605232,
+      0 4px 8px rgb(0 0 0 / 40%);
   }
 
   @media (width <= 767px) {
@@ -47,8 +111,20 @@
 }
 
 .active-char {
-  transform: scale(1.1);
-  background-color: rgb(227 175 241);
+  transform: scale(1.2);
+
+  color: #74006e;
+  text-shadow:
+    1px 1px 4px #fbd21c,
+    0 0 5px rgb(255 201 125),
+    0 0 1px rgb(255 217 66);
+
+  background: radial-gradient(circle at 30% 30%, #ffb24d, #df5fff 60%, #a81dd3);
+  box-shadow:
+    inset 0 4px 8px rgb(255 255 255 / 60%),
+    inset 0 -4px 12px rgb(0 0 0 / 50%),
+    0 5px 0 #6e2086,
+    0 16px 25px rgb(0 0 0 / 50%);
 }
 
 .numbers {
@@ -70,19 +146,33 @@
 }
 
 .input {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 
-  height: 40px;
-  padding: 5px 15px;
-  border: 1.5px solid rgb(130 136 107);
-  border-radius: 7px;
+  width: 100%;
+  height: 70px;
+  border: none;
+  border-radius: 30px;
 
-  font-size: 18px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  text-shadow:
+    1px 1px 2px #52067a,
+    0 0 4px rgb(255 220 139),
+    0 0 1px rgb(255 220 139);
 
+  background: linear-gradient(145deg, #a46ac6, #8c58b9);
   outline: none;
+  box-shadow:
+    inset 0 10px 18px rgb(77 30 111 / 45%),
+    inset 0 -4px 10px rgb(79 30 134 / 25%),
+    0 0 1em #af85d6;
 
   @media (width <= 767px) {
     font-size: 16px;
@@ -99,14 +189,26 @@
 
 .victory-message {
   position: absolute;
-  top: 0;
+  top: -20px;
+
+  font-size: 28px;
   font-weight: 600;
-  color: rgb(53 99 0);
+  color: #004e38;
+  text-shadow:
+    1px 1px 2px #363636,
+    0 0 5px rgb(255 255 255),
+    0 0 1px rgb(255 255 255);
 }
 
 .error-message {
   position: absolute;
-  top: 0;
+  top: -16px;
+
+  font-size: 24px;
   font-weight: 600;
   color: rgb(216 0 0);
+  text-shadow:
+    1px 1px 2px #363636,
+    0 0 5px rgb(255 255 255),
+    0 0 1px rgb(255 255 255);
 }

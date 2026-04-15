@@ -20,7 +20,7 @@ html {
 
   height: 100vh;
 
-  background-color: #cdcda0;
+  background: radial-gradient(circle at 30% 30%, #42369e, #2d2665 60%, #48036f);
 }
 
 .button {
@@ -50,5 +50,107 @@ html {
 
   @media (width <= 767px) {
     font-size: 16px;
+  }
+}
+
+.game-button {
+  cursor: pointer;
+
+  position: relative;
+
+  padding: 14px 30px;
+  border: none;
+  border-radius: 999px;
+
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(228 203 236);
+  text-shadow:
+    1px 1px 2px #52067a,
+    0 0 5px rgb(255 220 139),
+    0 0 1px rgb(255 220 139);
+  letter-spacing: 1px;
+
+  background: radial-gradient(circle at 30% 30%, #ad66d5, #7109aa 60%, #48036f);
+  box-shadow:
+    inset 0 4px 8px rgb(255 255 255 / 40%),
+    inset 0 -6px 12px rgb(0 0 0 / 35%),
+    0 8px 0 #400363,
+    0 12px 20px rgb(0 0 0 / 40%);
+
+  transition: all 0.12s ease;
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: rgb(99 99 95);
+    background: radial-gradient(
+      circle at 30% 30%,
+      #827589,
+      #55475c 60%,
+      #1f1a22
+    );
+  }
+}
+
+.game-button::before {
+  pointer-events: none;
+  content: '';
+
+  position: absolute;
+  top: 8%;
+  left: 12%;
+
+  width: 70%;
+  height: 30%;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 20%),
+    rgb(255 255 255 / 8%),
+    transparent
+  );
+}
+
+.game-button:hover {
+  box-shadow:
+    inset 0 4px 8px rgb(255 255 255 / 60%),
+    inset 0 -4px 12px rgb(0 0 0 / 40%),
+    0 10px 0 #400363,
+    0 16px 25px rgb(0 0 0 / 45%);
+}
+
+.game-button:active {
+  transform: translateY(12px);
+  box-shadow:
+    inset 0 6px 12px rgb(0 0 0 / 45%),
+    inset 0 -2px 4px rgb(255 255 255 / 30%),
+    0 2px 0 #400363,
+    0 4px 8px rgb(0 0 0 / 40%);
+}
+
+.green-btn {
+  background: radial-gradient(circle at 30% 30%, #5cbba0, #097658 60%, #034d38);
+  box-shadow:
+    inset 0 4px 8px rgb(255 255 255 / 40%),
+    inset 0 -6px 12px rgb(0 0 0 / 35%),
+    0 8px 0 #073024,
+    0 12px 20px rgb(0 0 0 / 40%);
+
+  &:hover {
+    box-shadow:
+      inset 0 4px 8px rgb(255 255 255 / 60%),
+      inset 0 -4px 12px rgb(0 0 0 / 40%),
+      0 10px 0 #073024,
+      0 16px 25px rgb(0 0 0 / 45%);
+  }
+
+  &:active {
+    transform: translateY(12px);
+    box-shadow:
+      inset 0 6px 12px rgb(0 0 0 / 45%),
+      inset 0 -2px 4px rgb(255 255 255 / 30%),
+      0 2px 0 #073024,
+      0 4px 8px rgb(0 0 0 / 40%);
   }
 }
